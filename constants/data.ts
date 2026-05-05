@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 import { title } from 'process';
 
->>>>>>> 7558155 (Hot Deals Done)
 export const headerData = [
     {title: "Home", href: "/"},
     {title: "Shop", href: "/shop"},
@@ -28,8 +25,6 @@ export const categoriesData = [
   { title: "Washing Machine", href: "washing-machine" },
   { title: "Kitchen Appliances", href: "kitchen-appliances" },
   { title: "gadget accessories", href: "gadget-accessories" },
-<<<<<<< HEAD
-=======
 ];
 
 export const productType = [
@@ -37,5 +32,4 @@ export const productType = [
   {title: "Appliances", value: "appliances"},
   {title: "Refregirators", value: "refregirators"},
   {title: "Others", value: "others"},
->>>>>>> 7558155 (Hot Deals Done)
 ];

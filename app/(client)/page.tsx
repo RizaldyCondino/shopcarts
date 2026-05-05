@@ -1,15 +1,5 @@
 import Container from "@/components/Container";
 import HomeBanner from "@/components/HomeBanner";
-<<<<<<< HEAD
-import { Button } from "@/components/ui/button";
-import React from "react";
-
-const Home = () => {
-  return (
-    <Container className=" bg-shop_light_pink">
-      <HomeBanner/>
-    </Container>
-=======
 import HomeCategories from "@/components/HomeCategories";
 import LatestBlog from "@/components/LatestBlog";
 import ProductGrid from "@/components/ProductGrid";
@@ -30,7 +20,6 @@ const Home = async() => {
       <ShopByBrands/>
       <LatestBlog/>
     </Container> 
->>>>>>> 7558155 (Hot Deals Done)
   );
 };
 

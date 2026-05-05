@@ -4,11 +4,6 @@
 import { defineLive } from "next-sanity/live";
 import { client } from './client'
 
-<<<<<<< HEAD
-export const { sanityFetch, SanityLive } = defineLive({
-  client,
-});
-=======
 
 const token = process.env.SANITY_API_READ_TOKEN;
 if(!token){
@@ -24,4 +19,3 @@ export const { sanityFetch, SanityLive } = defineLive({
   },
 });
  
->>>>>>> 7558155 (Hot Deals Done)

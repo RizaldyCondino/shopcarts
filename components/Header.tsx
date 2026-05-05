@@ -19,11 +19,7 @@ const Header = async () => {
   const user = await currentUser();
   console.log(user, "user");
   return (
-<<<<<<< HEAD
-    <header className="bg-white py-5 ">
-=======
     <header className="bg-white/70 py-5 sticky top-0 z-50  backdrop-blur-md ">
->>>>>>> 7558155 (Hot Deals Done)
       <Container className="flex item-center justify-between text-lightColor">
         <div className="w-auto md:w-1/3 flex items-center justify-start gap-2.5 md:gap-0">
           <MobileMenu />

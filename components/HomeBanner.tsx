@@ -21,7 +21,6 @@ function HomeBanner() {
         </Link>
       </div>
       <div>
-        <Image src={banner_1} alt="banner_1" className="hidden md:inline-flex w-96"/>
         <Image src={banner_1} alt="banner_1" className="hidden md:inline-flex w-96" priority/>
       </div>
     </div>
