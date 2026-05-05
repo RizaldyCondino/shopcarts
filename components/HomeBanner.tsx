@@ -21,7 +21,11 @@ function HomeBanner() {
         </Link>
       </div>
       <div>
+<<<<<<< HEAD
         <Image src={banner_1} alt="banner_1" className="hidden md:inline-flex w-96"/>
+=======
+        <Image src={banner_1} alt="banner_1" className="hidden md:inline-flex w-96" priority/>
+>>>>>>> 7558155 (Hot Deals Done)
       </div>
     </div>
   );

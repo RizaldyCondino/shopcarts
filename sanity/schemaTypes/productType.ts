@@ -39,7 +39,11 @@ export const productType = defineType({
         }),
         defineField({
             name: "discount",
+<<<<<<< HEAD
             title: "Discount",
+=======
+            title: "Discount Percentage %",
+>>>>>>> 7558155 (Hot Deals Done)
             type: "number",
             validation: (Rule)=> Rule.required().min(0),
         }),
