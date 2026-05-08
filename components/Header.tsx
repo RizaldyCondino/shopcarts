@@ -14,6 +14,7 @@ import {
 
   UserButton
 } from "@clerk/nextjs";
+import FavoriteButton from "./FavoriteButton";
 
 const Header = async () => {
   const user = await currentUser();
@@ -29,7 +30,7 @@ const Header = async () => {
         <div className="w-auto md:w-1/3 flex items-center justify-end gap-5">
           <SeachBar />
           <CartIcon />
-          <FavoriteBtn />
+          <FavoriteButton />
           <ClerkLoaded>
              <Show when="signed-in">
               <UserButton />

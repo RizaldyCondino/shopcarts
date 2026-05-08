@@ -1,4 +1,5 @@
 import AddToCartButton from "@/components/AddToCartButton";
+// import AddWishlistButton from "@/components/AddWishlistButton";
 import Container from "@/components/Container";
 import FavoriteButton from "@/components/FavoriteButton";
 import ImageView from "@/components/ImageView";
@@ -6,6 +7,7 @@ import PriceView from "@/components/PriceView";
 import ProductCharacteristics from "@/components/ProductCharacteristics";
 import { getProductBySlug } from "@/sanity/queries";
 import { CornerDownLeft, Share2, StarIcon, Truck } from "lucide-react";
+import { notFound } from "next/navigation";
 import React from "react";
 import { FaRegQuestionCircle } from "react-icons/fa";
 import { RxBorderSplit } from "react-icons/rx";
@@ -18,7 +20,10 @@ const SingleProductPage = async ({
 }) => {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
-  const isStock = (product?.stock ?? 0) > 0;
+  if(!product){
+    return notFound();
+  }
+  // const isStock = (product?.stock ?? 0) > 0;
   console.log(product);
   return (
     <Container className="flex flex-col md:flex-row gap-10 pb-10 ">
@@ -58,7 +63,9 @@ const SingleProductPage = async ({
         </div>
         <div className="flex items-center gap-2.5 lg:gap-5">
           <AddToCartButton product={product} />
+          {/* <FavoriteButton product={product}/> */}
           <FavoriteButton showProduct={true} product={product}></FavoriteButton>
+          {/* <AddWishlistButton showProduct={true} product={product}></AddWishlistButton> */}
         </div>
         <ProductCharacteristics product={product} />
         <div className="flex flex-wrap items-center justify-between gap-2.5 border-b border-b-gray-200 py-5 -mt-2">
