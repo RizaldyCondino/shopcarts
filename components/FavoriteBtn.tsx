@@ -1,8 +1,15 @@
+import { Product } from '@/sanity.types';
 import { Heart } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
-const FavoriteBtn = () => {
+const FavoriteBtn = ({
+  showProduct = false,
+  product,
+}: {
+  showProduct?: boolean;
+  product?: Product | null | undefined;
+}) => {
   return (
     <Link href={"/cart"} className="group relative">
       <Heart className='w-5 h-5 hover:text-shop_dark_green hoverEffect' />
