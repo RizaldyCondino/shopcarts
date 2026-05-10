@@ -46,6 +46,7 @@ const useStore = create<StoreState>()(
             return { items: [...state.items, { product, quantity: 1 }] };
           }
         }),
+        
       removeItem: (productId) =>
         set((state) => ({
           items: state.items.reduce((acc, item) => {

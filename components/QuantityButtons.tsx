@@ -46,7 +46,7 @@ const QuantityButtons = ({ product, className }: Props) => {
         <Minus />
       </Button>
 
-      <span className="font-semibold text-sm w-6 text-center text-darkColor">
+      <span className="font-semibold text-sm w-3 text-center text-darkColor">
         {itemCount}
       </span>
 
