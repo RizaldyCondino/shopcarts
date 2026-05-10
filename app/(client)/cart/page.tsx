@@ -28,6 +28,7 @@ import { client } from "@/sanity/lib/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import { createCheckoutSession, Metadata } from "@/actions/createCheckoutSession";
 
 const CartPage = () => {
   const {
@@ -74,9 +75,30 @@ const CartPage = () => {
   useEffect(() => {
     fetchAddreses();
   }, []);
-  const handleCheckOut=()=>{
-    
-  }
+  const handleCheckOut = async () => {
+    setLoading(true);
+    try {
+      const metadata: Metadata = {
+        orderNumber: crypto.randomUUID(),
+        customerName: user?.fullName ?? "Unknown",
+        customerEmail: user?.emailAddresses[0]?.emailAddress ?? "Unknown",
+        clerkUserId: user?.id,
+        addresses: selectedAddress,
+      };
+      if (groupedItems && groupedItems?.length > 0) {
+        const chekoutUrl = await createCheckoutSession(groupedItems, metadata);
+        // console.log(chekoutUrl);
+        
+        if (chekoutUrl) {
+          window.location.href = chekoutUrl;
+        }
+      }
+    } catch (error) {
+      console.error("Error Creating Checkout session", error);
+    } finally {
+      setLoading(false);
+    }
+  };
   const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
   return (
     <div className="bg-gray-50 pb-52 md:pb-10">
@@ -212,7 +234,7 @@ const CartPage = () => {
                         <Button
                           className="w-full rounded-full font-semibold tracking-wide hover:bg-shop_btn_dark_green/80 bg-shop_dark_green hoverEffect"
                           size="lg"
-                          disabled= {loading}
+                          disabled={loading}
                           onClick={handleCheckOut}
                         >
                           {loading ? "Please wait..." : "Proceed to Checkout"}
@@ -288,7 +310,7 @@ const CartPage = () => {
                         <Button
                           className="w-full rounded-full font-semibold tracking-wide hover:bg-shop_btn_dark_green/80 bg-shop_dark_green hoverEffect"
                           size="lg"
-                          disabled= {loading}
+                          disabled={loading}
                           onClick={handleCheckOut}
                         >
                           {loading ? "Please wait..." : "Proceed to Checkout"}
