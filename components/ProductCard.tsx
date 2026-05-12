@@ -13,7 +13,7 @@ const ProductCard = ({ product }: { product: Product }) => {
   return (
     <div className="text-sm border-[1px] border-dark_blue/20 rounded-md bg-white group">
       <div className="relative group overflow-hidden bg-shop_light_bg">
-        {product?.images && (
+        {product?.images?.length > 0 && (
           <Link href={`/product/${product?.slug?.current}`}>
             <Image
               src={urlFor(product?.images[0]).url()}
@@ -60,7 +60,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         <AddWishlistButton product={product} />
       </div>
       <div className="p-3 flex flex-col gap-2">
-        {product?.categories && (
+        {product?.categories?.length > 0 && (
           <p className="upperclass line-clamp-1 text-xs text-shop_light_text">
             {product?.categories?.map((cat) => cat).join(", ")}
           </p>
