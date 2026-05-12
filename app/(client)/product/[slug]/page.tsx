@@ -23,7 +23,7 @@ const SingleProductPage = async ({
   if(!product){
     return notFound();
   }
-  // const isStock = (product?.stock ?? 0) > 0;
+
   console.log(product);
   return (
     <Container className="flex flex-col md:flex-row gap-10 pb-10 ">
@@ -63,9 +63,9 @@ const SingleProductPage = async ({
         </div>
         <div className="flex items-center gap-2.5 lg:gap-5">
           <AddToCartButton product={product} />
-          {/* <FavoriteButton product={product}/> */}
+    
           <FavoriteButton showProduct={true} product={product}></FavoriteButton>
-          {/* <AddWishlistButton showProduct={true} product={product}></AddWishlistButton> */}
+        
         </div>
         <ProductCharacteristics product={product} />
         <div className="flex flex-wrap items-center justify-between gap-2.5 border-b border-b-gray-200 py-5 -mt-2">
