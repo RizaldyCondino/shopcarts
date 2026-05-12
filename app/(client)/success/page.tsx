@@ -1,15 +1,13 @@
 "use client";
-export const dynamic = "force-dynamic";
 import useStore from "@/store";
-import { useUser } from "@clerk/nextjs";
 import { Check, Home, Package, ShoppingBag } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
 const SuccessPage = () => {
-  const { user } = useUser();
+ 
   const { resetCart } = useStore();
   const searchParams = useSearchParams();
   const session_id = searchParams.get("session_id");
@@ -42,7 +40,7 @@ const SuccessPage = () => {
           </p>
           <p className="text-gray-700 text-center">
             Order Number:{" "}
-            <span className="text-black font-semibold"> {orderNumber}</span>
+            <span className="text-black font-semibold"> {orderNumber ?? "Processing..."}</span>
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <Link
