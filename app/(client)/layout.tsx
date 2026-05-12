@@ -36,5 +36,5 @@ export default function RootLayout({
         <Footer />
       </div>
     </ClerkProvider>
-  );
+  )
 }

@@ -1,7 +1,7 @@
 import { Search } from 'lucide-react'
 import React from 'react'
 
-const SeachBar = () => {
+const SearchBar = () => {
   return (
     <div>
         <Search className='w-5 h-5 hover:text-shop_dark_green hoverEffect'>
@@ -11,4 +11,4 @@ const SeachBar = () => {
   )
 }
 
-export default SeachBar
+export default SearchBar

@@ -153,7 +153,7 @@ async function createOrderInSanity(
                 );
                 continue;
             }
-            const newStock = Math.max(product.stock -  quantity, 0);
+            const newStock = Math.max(product.stock - quantity, 0);
         await backendClient.patch(productId).set({ stock: newStock}).commit();
         } catch (error){
             console.error(`Failed to update stock for product ${productId}:`, error);

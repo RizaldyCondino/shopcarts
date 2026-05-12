@@ -1,5 +1,16 @@
 import { sanityFetch } from "../lib/live";
-import { BRAND_QUERY, BRANDS_QUERY, DEAL_PRODUCTS, LATEST_BLOG_QUERY, PRODUCT_BY_SLUG_QUERY } from "./query";
+import {
+  BLOG_CATEGORIES,
+  BRAND_QUERY,
+  BRANDS_QUERY,
+  DEAL_PRODUCTS,
+  GET_ALL_BLOG,
+  LATEST_BLOG_QUERY,
+  My_ORDERS_QUERY,
+  OTHERS_BLOG_QUERY,
+  PRODUCT_BY_SLUG_QUERY,
+  SINGLE_BLOG_QUERY,
+} from "./query";
 
 const getCategories = async (quantity?: number) => {
   try {
@@ -24,31 +35,31 @@ const getCategories = async (quantity?: number) => {
   }
 };
 
-const getAllBrands = async () =>{
-  try{
-    const {data} = await sanityFetch({query: BRANDS_QUERY});
+const getAllBrands = async () => {
+  try {
+    const { data } = await sanityFetch({ query: BRANDS_QUERY });
     return data ?? [];
-  } catch (error){
+  } catch (error) {
     console.log("Error fetching all brands", error);
     return [];
   }
 };
 
-const getLatestBlog = async ()=>{
-  try{
-    const {data} = await sanityFetch({query: LATEST_BLOG_QUERY});
+const getLatestBlog = async () => {
+  try {
+    const { data } = await sanityFetch({ query: LATEST_BLOG_QUERY });
     return data ?? [];
-  }catch(error){
+  } catch (error) {
     console.log("Error fetching latest blogs", error);
     return [];
   }
-}
+};
 
-const getDealProducts = async ()=>{
-  try{
-    const {data} = await sanityFetch({query: DEAL_PRODUCTS});
+const getDealProducts = async () => {
+  try {
+    const { data } = await sanityFetch({ query: DEAL_PRODUCTS });
     return data ?? [];
-  }catch(error){
+  } catch (error) {
     console.log("Error fetching deal Products", error);
     return [];
   }
@@ -58,7 +69,7 @@ const getProductBySlug = async (slug: string) => {
   try {
     const product = await sanityFetch({
       query: PRODUCT_BY_SLUG_QUERY,
-      params: { slug, },
+      params: { slug },
     });
 
     return product?.data || null;
@@ -68,18 +79,98 @@ const getProductBySlug = async (slug: string) => {
   }
 };
 
-const getBrand = async (slug: string)=>{
-  try{
+const getBrand = async (slug: string) => {
+  try {
     const product = await sanityFetch({
       query: BRAND_QUERY,
-      params: {slug},
+      params: { slug },
     });
     return product?.data || null;
-  }catch (error){
+  } catch (error) {
     console.error("Error feching product by ID", error);
     return null;
   }
-}
+};
 
+const getMyOrders = async (userId: string) => {
+  try {
+    const orders = await sanityFetch({
+      query: My_ORDERS_QUERY,
+      params: {
+        userId,
+      },
+    });
+    return orders?.data || null;
+  } catch (error) {
+    console.error("Error fetching product by ID", error);
+    return null;
+  }
+};
 
-export { getCategories, getAllBrands, getLatestBlog, getDealProducts, getProductBySlug, getBrand };
+const getAllBlogs = async (quantity: number) => {
+  try {
+    const orders = await sanityFetch({
+      query: GET_ALL_BLOG,
+      params: {
+        quantity,
+      },
+    });
+    return orders?.data || null;
+  } catch (error) {
+    console.error("Error fetching blogs", error);
+    return null;
+  }
+};
+const getSingleBlog = async (slug: string) => {
+  try {
+    const { data } = await sanityFetch({
+      query: SINGLE_BLOG_QUERY,
+      params: {
+        slug,
+      },
+    });
+    return data ?? [];
+  } catch (error) {
+    console.error("Error fetching single blogs", error);
+    return null;
+  }
+};
+
+const getBlogCategories = async () => {
+  try {
+    const { data } = await sanityFetch({
+      query: BLOG_CATEGORIES,
+    });
+    return data ?? [];
+  } catch (error) {
+    console.log("Error fetching blog categories:", error);
+    return [];
+  }
+};
+
+const getOthersBlog = async (slug: string, quantity: number) => {
+  try {
+    const { data } = await sanityFetch({
+      query: OTHERS_BLOG_QUERY,
+      params: { slug, quantity },
+    });
+    return data ?? [];
+  } catch (error) {
+     console.log("Error fetching all other blog:", error);
+    return [];
+  }
+};
+
+export {
+  getCategories,
+  getAllBrands,
+  getLatestBlog,
+  getDealProducts,
+  getProductBySlug,
+  getBrand,
+  getMyOrders,
+  getAllBlogs,
+  getSingleBlog,
+  getBlogCategories,
+  getOthersBlog,
+};
