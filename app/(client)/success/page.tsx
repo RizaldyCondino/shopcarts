@@ -1,8 +1,8 @@
 "use client";
+export const dynamic = "force-dynamic";
 import useStore from "@/store";
 import { useUser } from "@clerk/nextjs";
 import { Check, Home, Package, ShoppingBag } from "lucide-react";
-import { scale } from "motion/react";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
