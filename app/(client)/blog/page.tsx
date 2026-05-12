@@ -41,14 +41,6 @@ const BlogPage = async () => {
                         {item}
                       </p>
                     ))}
-                    {/* {blog?.blogcategories?.map((item, index) => (
-                      <p
-                        key={index}
-                        className="semi-bold text-shop_dark_green tracking-wider"
-                      >
-                        {item?.title}
-                      </p>
-                    ))} */}
                     <span
                       className="absolute left-0 -bottom-1.5 bg-lightColor/30 inline-block w-full h-[2px]
                   group-hover:bg-shop_dark_green hover:cursor-pointer hoverEffect
