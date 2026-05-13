@@ -10,30 +10,32 @@ const extraData = [
   {
     title: "Free Delivery",
     description: "Free shipping over $100",
-    icon: <Truck size={45} />,
+    icon: <Truck size={40} />,
   },
   {
     title: "Free Return",
     description: "Free shipping over $100",
-    icon: <GitCompareArrows size={45} />,
+    icon: <GitCompareArrows size={40} />,
   },
   {
     title: "Customer Support",
     description: "Friendly 24/7 customer support",
-    icon: <Headset size={45} />,
+    icon: <Headset size={40} />,
   },
   {
     title: "Money Back guarantee",
     description: "Quality checked by our team",
-    icon: <ShieldCheck size={45} />,
+    icon: <ShieldCheck size={40} />,
   },
 ];
 
 const ShopByBrands = async () => {
   const brands = await getAllBrands();
+
   return (
-    <div className="mb-10 lg:mb-20 bg-shop-lighter_bg lg:p-7 rounded-md">
-      <div className="flex justify-between items-center gap-5 mb-10">
+    <div className="mb-10 lg:mb-20 bg-shop-lighter_bg lg:p-7 p-4 rounded-md">
+      {/* header */}
+      <div className="flex justify-between items-center gap-5 mb-6">
         <Title>Shop By Brands</Title>
         <Link
           href={"/shop"}
@@ -42,40 +44,47 @@ const ShopByBrands = async () => {
           View All
         </Link>
       </div>
-      <div className=" grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2.5">
+
+      {/* brands grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3">
         {brands?.map((brand) => (
           <Link
             key={brand?._id}
-            href={{pathname:"/shop",query:{brand:brand?.slug?.current}}}
-            className="bg-white w-32 h-24 flex justify-between gap-2 items-center rounded-md overflow-hidden hover:shadow-lg shadow-shop_dark_green/20 hoverEffect"
+            href={{
+              pathname: "/shop",
+              query: { brand: brand?.slug?.current },
+            }}
+            className="bg-white rounded-md flex items-center justify-center p-3 aspect-[4/3] hover:shadow-lg shadow-shop_dark_green/20 hoverEffect"
           >
             {brand?.image && (
               <Image
                 src={urlFor(brand?.image).url()}
                 alt="brandImage"
-                width={250}
-                height={250}
-                className="w-32 h-20 object-contain "
-                
+                width={120}
+                height={80}
+                className="w-full h-full object-contain"
               />
             )}
           </Link>
         ))}
       </div>
-      <div className="grid grid-cols-1 mt-16 gap-2.5 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-2 shadow-sm shadow-shop_light_green/20 py-5">
-        {extraData?.map((item, index) => (
+
+      {/* extra features */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12 p-4 rounded-md shadow-sm shadow-shop_light_green/20">
+        {extraData.map((item, index) => (
           <div
             key={index}
-            className="flex items-center gap-3 group text-lightColor hover:text-shop_light_green"
+            className="flex items-center gap-3 text-lightColor hover:text-shop_light_green transition"
           >
-            <span className="inline-flex scale-100 group-hover:scale-90 hoverEffect">
-              {item?.icon}
-            </span>
-            <div className="text-sm">
-              <p className="text-darkColor/80 font-bold capitalize">
-                {item?.title}
+            <span className="shrink-0">{item.icon}</span>
+
+            <div className="text-sm leading-tight">
+              <p className="font-bold text-darkColor/80">
+                {item.title}
               </p>
-              <p className="text-lightColor">{item?.description}</p>
+              <p className="text-lightColor text-xs sm:text-sm">
+                {item.description}
+              </p>
             </div>
           </div>
         ))}

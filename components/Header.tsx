@@ -9,8 +9,9 @@ import SignIn from "./SignIn";
 import MobileMenu from "./MobileMenu";
 import { currentUser, auth } from "@clerk/nextjs/server";
 import { ClerkLoaded, Show, SignInButton, UserButton } from "@clerk/nextjs";
-import FavoriteButton from "./FavoriteButton";
+import FavoriteButtonDb from "./FavoriteButtonDb";
 import { getMyOrders } from "@/sanity/queries";
+import { getFavoritesCount } from "@/lib/getFavoritesCount";
 import { Logs } from "lucide-react";
 import Link from "next/link";
 
@@ -18,8 +19,10 @@ const Header = async () => {
   const user = await currentUser();
   const { userId } = await auth();
   let orders = null;
+  let initialFavoritesCount = 0;
   if (userId) {
     orders = await getMyOrders(userId);
+    initialFavoritesCount = await getFavoritesCount(userId);
   }
 
   return (
@@ -31,9 +34,11 @@ const Header = async () => {
         </div>
         <HeaderMenu />
         <div className="w-auto md:w-1/3 flex items-center justify-end gap-5">
-          <SearchBar />
+          <div className="hidden lg:block">
+            <SearchBar />
+          </div>
           <CartIcon />
-          <FavoriteButton />
+          <FavoriteButtonDb initialCount={initialFavoritesCount} />
           <ClerkLoaded>
             <Show when="signed-in">
               <Link

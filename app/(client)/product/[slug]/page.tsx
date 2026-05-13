@@ -24,7 +24,7 @@ const SingleProductPage = async ({
     return notFound();
   }
 
-  console.log(product);
+  // console.log(product);
   return (
     <Container className="flex flex-col md:flex-row gap-10 pb-10 ">
       {product?.images && (
@@ -63,7 +63,6 @@ const SingleProductPage = async ({
         </div>
         <div className="flex items-center gap-2.5 lg:gap-5">
           <AddToCartButton product={product} />
-    
           <FavoriteButton showProduct={true} product={product}></FavoriteButton>
         
         </div>

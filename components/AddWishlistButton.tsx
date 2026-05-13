@@ -21,6 +21,7 @@ const AddWishlistButton = ({
     );
     setExistingProduct(availableProduct || null);
   }, [product, favoriteProduct]);
+
   const handleFavorite = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.preventDefault()
     if(product?._id){
@@ -29,6 +30,7 @@ const AddWishlistButton = ({
       })
     }
   };
+
   return (
     <div className={cn("absolute top-2 right-2 z-10", className)}>
       <button onClick={handleFavorite} className={`p-2.5 rounded-full hover:bg-shop_btn_dark_green 

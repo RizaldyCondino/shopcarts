@@ -22,6 +22,11 @@ interface StoreState {
   addToFavorite: (product: Product) => Promise<void>;
   removeFromFavorite: (productId: string) => void;
   resetFavorite: () => void;
+
+  favoriteCount: number;
+  setFavoriteCount: (count: number) => void;
+  incrementFavoriteCount: () => void;
+  decrementFavoriteCount: () => void;
 }
 
 const useStore = create<StoreState>()(
@@ -29,6 +34,7 @@ const useStore = create<StoreState>()(
     (set, get) => ({
       items: [],
       favoriteProduct: [],
+      favoriteCount: 0,
       addItem: (product) =>
         set((state) => {
           const existingItem = state.items.find(
@@ -108,6 +114,7 @@ const useStore = create<StoreState>()(
           resolve();
         });
       },
+
       removeFromFavorite: (productId: string) => {
         set((state: StoreState) => ({
           favoriteProduct: state.favoriteProduct.filter(
@@ -117,6 +124,22 @@ const useStore = create<StoreState>()(
       },
       resetFavorite: () => {
         set({ favoriteProduct: [] });
+      },
+
+      setFavoriteCount: (count: number) => {
+        set({ favoriteCount: count });
+      },
+
+      incrementFavoriteCount: () => {
+        set((state) => ({
+          favoriteCount: Math.max(0, state.favoriteCount + 1),
+        }));
+      },
+
+      decrementFavoriteCount: () => {
+        set((state) => ({
+          favoriteCount: Math.max(0, state.favoriteCount - 1),
+        }));
       },
     }),
 

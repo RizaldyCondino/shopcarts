@@ -4,12 +4,21 @@ import { Flame, StarIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import AddWishlistButton from "./AddWishlistButton";
+
+import AddWishlistButtonDb from "./AddWishlistButtonDb";
+// import AddWishlistButton from "./AddWishlistButton";
 import { Title } from "./ui/text";
 import PriceView from "./PriceView";
 import AddToCartButton from "./AddToCartButton";
 
-const ProductCard = ({ product }: { product: Product }) => {
+const ProductCard = ({
+  product,
+  onRemove,
+}: {
+  product: Product;
+  onRemove?: () => void;
+}) => {
+  
   return (
     <div className="text-sm border-[1px] border-dark_blue/20 rounded-md bg-white group">
       <div className="relative group overflow-hidden bg-shop_light_bg">
@@ -57,14 +66,16 @@ const ProductCard = ({ product }: { product: Product }) => {
             Sale!
           </p>
         )}
-        <AddWishlistButton product={product} />
+        <AddWishlistButtonDb product={product} onRemove={onRemove} />
       </div>
       <div className="p-3 flex flex-col gap-2">
-        {product?.categories?.length > 0 && (
-          <p className="upperclass line-clamp-1 text-xs text-shop_light_text">
-            {product?.categories?.map((cat) => cat).join(", ")}
-          </p>
+        {product?.categories?.length > 0 &&
+          typeof product.categories[0] === "string" && (
+            <p className="uppercase line-clamp-1 text-xs text-shop_light_text">
+              {product.categories.join(", ")}
+            </p>
         )}
+
         <Title className="text-sm line-clamp-1">{product?.name}</Title>
         <div className="flex items-center gap-2">
           <div className="flex items-center">

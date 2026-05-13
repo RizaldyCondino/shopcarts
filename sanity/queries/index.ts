@@ -9,6 +9,7 @@ import {
   My_ORDERS_QUERY,
   OTHERS_BLOG_QUERY,
   PRODUCT_BY_SLUG_QUERY,
+  PRODUCTS_BY_IDS_QUERY,
   SINGLE_BLOG_QUERY,
 } from "./query";
 
@@ -76,6 +77,24 @@ const getProductBySlug = async (slug: string) => {
   } catch (error) {
     console.error("Error fetching product by slug:", error);
     return null;
+  }
+};
+
+const getProductsByIds = async (ids: string[]) => {
+  if (!ids || ids.length === 0) {
+    return [];
+  }
+
+  try {
+    const products = await sanityFetch({
+      query: PRODUCTS_BY_IDS_QUERY,
+      params: { ids },
+    });
+
+    return products?.data || [];
+  } catch (error) {
+    console.error("Error fetching products by ids:", error);
+    return [];
   }
 };
 
@@ -167,6 +186,7 @@ export {
   getLatestBlog,
   getDealProducts,
   getProductBySlug,
+  getProductsByIds,
   getBrand,
   getMyOrders,
   getAllBlogs,

@@ -18,7 +18,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import AddWishlistButton from "@/components/AddWishlistButton";
+import AddWishlistButton from "@/components/AddWishlistButtonDb";
 import toast from "react-hot-toast";
 import PriceFormatter from "@/components/PriceFormatter";
 import QuantityButtons from "@/components/QuantityButtons";
