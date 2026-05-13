@@ -15,7 +15,7 @@ const BlogPage = async () => {
   return (
     <Container>
       <div className="mb-10 lg:mb-20">
-        <Title>Blog Page</Title>
+        <Title className="mb-4">Blog Page</Title>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5">
           {blogs?.map((blog) => (
             <div key={blog?._id} className="rounded-lg overflow-hidden">

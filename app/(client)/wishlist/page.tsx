@@ -9,6 +9,7 @@ import ProductCard from "@/components/ProductCard";
 import { Title } from "@/components/ui/text";
 import { Button } from "@/components/ui/button";
 import { client } from "@/sanity/lib/client";
+import { FileX } from "lucide-react";
 
 const WishlistPage = () => {
   const { isSignedIn, userId } = useAuth();
@@ -44,7 +45,7 @@ const WishlistPage = () => {
             slug
           }
         }`,
-        { ids }
+        { ids },
       );
 
       return products || [];
@@ -98,27 +99,32 @@ const WishlistPage = () => {
 
   return (
     <Container className="py-10">
-      <div className="mb-8 flex flex-col gap-3">
-        <Title>My Wishlist</Title>
+      {/* <div className="mb-8 flex flex-col gap-3">
+        
         <p className="text-sm text-muted-foreground">
           {products.length > 0
             ? `You have ${products.length} favorite product${products.length === 1 ? "" : "s"}.`
             : "Your wishlist is empty."}
         </p>
-      </div>
+      </div> */}
 
       {products.length > 0 ? (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((product) => (
-            <ProductCard
-              key={product._id}
-              product={product}
-              onRemove={() => handleRemoveProduct(product._id)}
-            />
-          ))}
+        <div>
+          <Title className="mb-4">My Wishlist</Title>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {products.map((product) => (
+              <ProductCard
+                key={product._id}
+                product={product}
+                onRemove={() => handleRemoveProduct(product._id)}
+              />
+            ))}
+          </div>
         </div>
       ) : (
         <div className="flex min-h-105 flex-col items-center justify-center gap-4 rounded-xl border border-dashed border-shop_light_bg p-8 text-center">
+          <FileX className="w-50 h-50" />
           <p className="text-lg font-semibold">Your wishlist is empty.</p>
           <p className="text-sm text-muted-foreground max-w-lg">
             Add products to your wishlist and come back later to view them.
