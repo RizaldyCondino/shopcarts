@@ -11,9 +11,9 @@ const Logo = ({ className, spanDesign }: { className?: string, spanDesign?:strin
           className,
         )}
       >
-        Shopcar
+        Shopcrt
         <span className={cn(" text-shop_light_green group-hover:text-shop_dark_green hoverEffect", spanDesign)}>
-          t
+          z
         </span>
       </h2>
     </Link>

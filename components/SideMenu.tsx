@@ -42,8 +42,8 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
 
         {/* Links */}
         <div className="flex flex-col space-y-3.5 font-semibold tracking-wide">
-          <div className="block md:hidden">
-            <SearchBar />
+          <div className="block md:hidden text-darkColor">
+            <SearchBar  />
           </div>
 
           {headerData?.map((item) => (

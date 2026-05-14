@@ -136,7 +136,7 @@ const SearchBar = () => {
               placeholder="Search products..."
               value={searchQuery}
               onChange={(e) => handleSearch(e.target.value)}
-              className="w-full py-2 pl-10 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-shop_dark_green"
+              className="w-full py-2 pl-10 pr-10 border border-gray-300 rounded-lg text-black bg-white focus:outline-none focus:ring-1 focus:ring-shop_dark_green"
             />
 
             {isLoading && (
@@ -148,7 +148,7 @@ const SearchBar = () => {
 
       {/* RESULTS */}
       {isOpen && searchQuery && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto">
+        <div className="absolute top-full left-0 right-0 mt-2 bg-white text-black border border-gray-200 rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto">
           {results.length > 0 ? (
             <div className="p-2">
               {results.map((product) => (
@@ -171,7 +171,7 @@ const SearchBar = () => {
                   )}
 
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium">
+                    <p className="truncate text-sm font-medium text-gray-900">
                       {product.name}
                     </p>
 
